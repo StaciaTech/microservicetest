@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import BookModel from "./BookModel.js"
 import cors from "cors";
+import book from "./Data.js"
 
 const app = express()
 app.use(bodyParser.json())
@@ -43,7 +44,9 @@ app.post('/create-book', async (req, res) => {
 
 app.get('/books', async (req, res) => {
 
-    const books = await BookModel.find()
+    // const books = await BookModel.find()
+
+    const books = book
     return res.send(books)
 })
 

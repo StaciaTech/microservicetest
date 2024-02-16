@@ -4,9 +4,11 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import axios from "axios"
 import OrderModel from "./OrderModel.js"
+import cors from "cors";
 
 const app = express()
 app.use(bodyParser.json())
+app.use(cors())
 
 try {
     mongoose.connect("mongodb+srv://Procurement:mongoaws@cluster.4dq7x2u.mongodb.net/orderservice");
@@ -51,23 +53,32 @@ app.get("/order/:id", async (req, res) => {
 
     // console.log("order", order.customerId)
 
-    const customer = await axios.get("http://localhost:4001/customer/" + order.customerId)
-    const book = await axios.get("http://localhost:4000/book/" + order.bookId)
+    let customerData
 
-    // console.log("customer", customer.data)
-    // console.log("book", book.data)
+    await axios.get(`http://localhost:4001/customer/${order.customerId}`).then((cust) => {
+        // console.log("res", cust.data)
+        customerData = cust.data
+    }).catch((err) => console.log(err))
+
+
+    let bookData
+    await axios.get(`http://localhost:4000/book/${order.bookId}`).then((book) => {
+        // console.log("res", book.data)
+        bookData = book.data
+
+    }).catch((err) => console.log(err))
+
 
 
     let response = {}
 
     response.order = order
-    response.customerDetails = customer.data
-    response.bookDetails = book.data
+    response.customerDetails = customerData
+    response.bookDetails = bookData
 
     return res.json({ response })
 
 })
-
 
 
 

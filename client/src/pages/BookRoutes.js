@@ -12,9 +12,8 @@ export default function BookRoutes() {
                 <Link to='/books' style={{
                     marginRight: '1rem'
                 }}>All books</Link>
-                <Link to='/books/add-book'>Add book</Link>
+                <Link to='/books/add-book'>Add Book</Link>
             </div>
-
             <Outlet />
         </div>
     )
