@@ -6,8 +6,11 @@ export default function Orders() {
 
     const [orders, setOrders] = useState([]);
 
+    // const api = "http://localhost:4002/orders"
+    const api = `http://localhost:8002/test/order-index`
+
     const handleGetOrders = async () => {
-        await axios.get('http://localhost:4002/orders').then((res) => setOrders(res.data)).catch((err) => console.log(err))
+        await axios.get(api).then((res) => setOrders(res.data)).catch((err) => console.log(err))
     };
 
 
@@ -30,15 +33,13 @@ export default function Orders() {
             }}>
                 {
                     orders.map((data, index) => (
-                        <div key={index}
-                            onClick={() => navigate(`${data._id}`)}
-                        >
+                        <div>
                             <img style={{
                                 width: '10rem',
                                 height: '10rem',
                                 objectFit: 'cover'
-                            }} src={data.img} />
-                            <div><strong>order Name: </strong>{data.name}</div>
+                            }} src={data.bookData.img} />
+                            <div><strong>Book Name: </strong>{data.bookData.title}</div>
                         </div>
                     ))
                 }

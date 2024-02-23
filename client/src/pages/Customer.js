@@ -9,7 +9,10 @@ export default function Book() {
 
         console.log("--------------id----------", id)
 
-        await axios.get(`http://localhost:4001/customer/${id}`).then((res) => {
+        // const api = `http://localhost:4001/customer/${id}`
+        const api = `http://localhost:8002/test/customer-show/${id}`
+
+        await axios.get(api).then((res) => {
             setCustomer(res.data)
         }).catch((err) => console.log(err))
     };

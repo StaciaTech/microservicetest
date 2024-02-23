@@ -6,8 +6,21 @@ import { Link } from 'react-router-dom'
 export default function Book() {
     const [book, setBook] = useState([]);
     const { id } = useParams();
+
+    // const api = `http://localhost:4000/book/${id}`
+    const api = `http://localhost:8002/test/book-show/${id}`
+
+    const orderApi = `http://localhost:8002/test/order-store`
+
+    const handleOrderBook = async (bookId) => {
+        await axios.post(orderApi, {
+            bookId: bookId
+        }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
+    };
+
+
     const handleGetBooks = () => {
-        axios.get(`http://localhost:4000/book/${id}`).then((res) => {
+        axios.get(api).then((res) => {
             setBook(res.data)
         }).catch((err) => console.log(err))
     };
@@ -32,7 +45,11 @@ export default function Book() {
             <div><strong>Author: </strong>{book.author}</div>
             <div><strong>Publisher: </strong>{book.publisher}</div>
             <div><strong>YearOfPublication: </strong>{book.yearOfPublication}</div>
-            <div style={{ textAlign: "center" }}> <Link to='/book/order-book'>Order Book</Link></div>
+            <a style={{
+                marginLeft: "500px", cursor: "pointer", textAlign: "center", borderBottom: "1px solid blue", color: 'blue'
+            }}
+                onClick={() => handleOrderBook(book._id)}
+            >Order Book</a>
         </div >
     )
 }

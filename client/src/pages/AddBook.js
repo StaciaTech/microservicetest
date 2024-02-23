@@ -10,7 +10,9 @@ export default function AddBook() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const api = "http://localhost:4000/create-book"
+        // const api = "http://localhost:4000/create-book"
+        const api = `http://localhost:8002/test/book-store`
+
 
         axios.post(api, {
             title: title,
@@ -20,10 +22,10 @@ export default function AddBook() {
             yearOfPublication: yearOfPublication
         })
             .then(function (response) {
-                console.log(response);
+                console.log("response", response);
             })
             .catch(function (error) {
-                console.log(error);
+                console.log("error", error);
             });
     }
 

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 export default function Books() {
 
     const [books, setBooks] = useState([]);
 
+    // const api = 'http://localhost:4000/books'
+    const api = 'http://localhost:8002/test/book-index'
+
     const handleGetBooks = async () => {
-        await axios.get('http://localhost:4000/books').then((res) => setBooks(res.data)).catch((err) => console.log(err))
+        await axios.get(api).then((res) => setBooks(res.data)).catch((err) => console.log(err))
     };
 
 
