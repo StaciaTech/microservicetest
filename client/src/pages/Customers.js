@@ -8,13 +8,18 @@ export default function Customers() {
 
     // -----------microservice----------------
 
-    // const api = "http://localhost:4001/test/customer-index"
+    let customerApi
+    customerApi = "http://localhost:4001/test/customer-index"
 
-    const api = `http://localhost:8002/test/customer-index`
+    // const api = `http://localhost:8002/test/customer-index`
 
 
     const handleGetCustomers = async () => {
-        await axios.get(api).then((res) => setCustomers(res.data)).catch((err) => console.log(err))
+        if (customerApi) {
+            await axios.get(customerApi).then((res) => setCustomers(res.data)).catch((err) => console.log(err))
+        } else {
+            await axios.get(api).then((res) => setCustomers(res.data)).catch((err) => console.log(err))
+        }
     };
 
 

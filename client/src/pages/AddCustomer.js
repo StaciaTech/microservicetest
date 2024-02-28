@@ -10,23 +10,36 @@ export default function AddCustomer() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        let customerApi
         // -----------microservice----------------
-        // const api = "http://localhost:4001/test/customer-store"
+        // customerApi = "http://localhost:4001/test/customer-store"
 
         const api = "http://localhost:8002/test/customer-store"
 
-        axios.post(api, {
-            name: name,
-            img: img,
-            age: age,
-            address: address
-        })
-            .then(function (response) {
+        if (customerApi) {
+
+            axios.post(customerApi, {
+                name: name,
+                img: img,
+                age: age,
+                address: address
+            }).then(function (response) {
                 console.log(response);
-            })
-            .catch(function (error) {
+            }).catch(function (error) {
                 console.log(error);
             });
+        } else {
+            axios.post(api, {
+                name: name,
+                img: img,
+                age: age,
+                address: address
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     }
 
     return (

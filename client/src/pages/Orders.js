@@ -8,12 +8,16 @@ export default function Orders() {
 
     // -----------microservice----------------
 
-    // const api = "http://localhost:4002/test/order-index"
+    const orderApi = "http://localhost:4002/test/order-index"
 
-    const api = `http://localhost:8002/test/order-index`
+    // const api = `http://localhost:8002/test/order-index`
 
     const handleGetOrders = async () => {
-        await axios.get(api).then((res) => setOrders(res.data)).catch((err) => console.log(err))
+        if (orderApi) {
+            await axios.get(orderApi).then((res) => setOrders(res.data)).catch((err) => console.log(err))
+        } else {
+            await axios.get(api).then((res) => setOrders(res.data)).catch((err) => console.log(err))
+        }
     };
 
 

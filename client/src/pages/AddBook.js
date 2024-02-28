@@ -12,25 +12,36 @@ export default function AddBook() {
         e.preventDefault();
 
         // -----------microservice----------------
+        let bookApi
+        bookApi = "http://localhost:4000/test/book-store"
 
-        // const api = "http://localhost:4000/test/book-store"
+        // const api = `http://localhost:8002/test/book-store`
 
-        const api = `http://localhost:8002/test/book-store`
-
-
-        axios.post(api, {
-            title: title,
-            img: img,
-            author: author,
-            publisher: publisher,
-            yearOfPublication: yearOfPublication
-        })
-            .then(function (response) {
+        if (bookApi) {
+            axios.post(bookApi, {
+                title: title,
+                img: img,
+                author: author,
+                publisher: publisher,
+                yearOfPublication: yearOfPublication
+            }).then(function (response) {
                 console.log("response", response);
-            })
-            .catch(function (error) {
+            }).catch(function (error) {
                 console.log("error", error);
             });
+        } else {
+            axios.post(api, {
+                title: title,
+                img: img,
+                author: author,
+                publisher: publisher,
+                yearOfPublication: yearOfPublication
+            }).then(function (response) {
+                console.log("response", response);
+            }).catch(function (error) {
+                console.log("error", error);
+            });
+        }
     }
 
     return (

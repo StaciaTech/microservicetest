@@ -7,13 +7,17 @@ export default function Books() {
     const [books, setBooks] = useState([]);
 
     // -----------microservice----------------
+    let bookApi
+    bookApi = 'http://localhost:4000/test/book-index'
 
-    // const api = 'http://localhost:4000/test/book-index'
-
-    const api = 'http://localhost:8002/test/book-index'
+    // const api = 'http://localhost:8002/test/book-index'
 
     const handleGetBooks = async () => {
-        await axios.get(api).then((res) => setBooks(res.data)).catch((err) => console.log(err))
+        if (bookApi) {
+            await axios.get(bookApi).then((res) => setBooks(res.data)).catch((err) => console.log(err))
+        } else {
+            await axios.get(api).then((res) => setBooks(res.data)).catch((err) => console.log(err))
+        }
     };
 
 

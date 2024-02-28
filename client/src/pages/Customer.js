@@ -7,16 +7,22 @@ export default function Book() {
     const { id } = useParams();
     const handleGetCustomer = async () => {
 
-
+        let customerApi
         // -----------microservice----------------
 
-        // const api = `http://localhost:4001/test/customer-show/${id}`
+        // customerApi = `http://localhost:4001/test/customer-show/${id}`
 
         const api = `http://localhost:8002/test/customer-show/${id}`
 
-        await axios.get(api).then((res) => {
-            setCustomer(res.data)
-        }).catch((err) => console.log(err))
+        if (customerApi) {
+            await axios.get(customerApi).then((res) => {
+                setCustomer(res.data)
+            }).catch((err) => console.log(err))
+        } else {
+            await axios.get(api).then((res) => {
+                setCustomer(res.data)
+            }).catch((err) => console.log(err))
+        }
     };
 
     useEffect(() => {

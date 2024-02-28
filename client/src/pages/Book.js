@@ -9,16 +9,22 @@ export default function Book() {
 
     // -----------microservice----------------
 
-    // const api = `http://localhost:4000/test/book-show/${id}`
+    // const bookApi = `http://localhost:4000/test/book-show/${id}`
     // const orderApi = `http://localhost:4000/test/order-store`
 
     const bookApi = `http://localhost:8002/test/book-show/${id}`
     const orderApi = `http://localhost:8002/test/order-store`
 
     const handleOrderBook = async (bookId) => {
-        await axios.post(orderApi, {
-            bookId: bookId
-        }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
+        if (bookApi) {
+            await axios.post(orderApi, {
+                bookId: bookId
+            }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
+        } else {
+            await axios.post(orderApi, {
+                bookId: bookId
+            }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
+        }
     };
 
 
