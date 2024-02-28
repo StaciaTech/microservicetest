@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 
 // create a new book
-app.post('/create-book', async (req, res) => {
+app.post('/test/book-store', async (req, res) => {
     // console.log(req.body)
     const { title, author, publisher, yearOfPublication, img } = req.body
 
@@ -42,22 +42,18 @@ app.post('/create-book', async (req, res) => {
 
 // list of books
 
-app.get('/books', async (req, res) => {
+app.get('/test/book-index', async (req, res) => {
 
-    // const books = await BookModel.find()
-
-    const books = book
+    const books = await BookModel.find()
     return res.send(books)
 })
 
 
-app.get('/book/:id', async (req, res) => {
+app.get('/test/book-show/:id', async (req, res) => {
 
     const book = await BookModel.findOne({ _id: req.params.id })
     return res.send(book)
 })
-
-
 
 
 

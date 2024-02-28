@@ -7,9 +7,11 @@ export default function Book() {
     const { id } = useParams();
     const handleGetCustomer = async () => {
 
-        console.log("--------------id----------", id)
 
-        // const api = `http://localhost:4001/customer/${id}`
+        // -----------microservice----------------
+
+        // const api = `http://localhost:4001/test/customer-show/${id}`
+
         const api = `http://localhost:8002/test/customer-show/${id}`
 
         await axios.get(api).then((res) => {

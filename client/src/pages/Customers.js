@@ -5,8 +5,14 @@ import axios from 'axios'
 export default function Customers() {
 
     const [customers, setCustomers] = useState([]);
-    // const api = "http://localhost:4001/customers"
+
+    // -----------microservice----------------
+
+    // const api = "http://localhost:4001/test/customer-index"
+
     const api = `http://localhost:8002/test/customer-index`
+
+
     const handleGetCustomers = async () => {
         await axios.get(api).then((res) => setCustomers(res.data)).catch((err) => console.log(err))
     };

@@ -7,9 +7,12 @@ export default function Book() {
     const [book, setBook] = useState([]);
     const { id } = useParams();
 
-    // const api = `http://localhost:4000/book/${id}`
-    const api = `http://localhost:8002/test/book-show/${id}`
+    // -----------microservice----------------
 
+    // const api = `http://localhost:4000/test/book-show/${id}`
+    // const orderApi = `http://localhost:4000/test/order-store`
+
+    const bookApi = `http://localhost:8002/test/book-show/${id}`
     const orderApi = `http://localhost:8002/test/order-store`
 
     const handleOrderBook = async (bookId) => {
@@ -20,7 +23,7 @@ export default function Book() {
 
 
     const handleGetBooks = () => {
-        axios.get(api).then((res) => {
+        axios.get(bookApi).then((res) => {
             setBook(res.data)
         }).catch((err) => console.log(err))
     };

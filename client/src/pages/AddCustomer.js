@@ -9,7 +9,10 @@ export default function AddCustomer() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const api = "http://localhost:4001/create-customer"
+
+        // -----------microservice----------------
+        // const api = "http://localhost:4001/test/customer-store"
+
         const api = "http://localhost:8002/test/customer-store"
 
         axios.post(api, {

@@ -6,7 +6,10 @@ export default function Orders() {
 
     const [orders, setOrders] = useState([]);
 
-    // const api = "http://localhost:4002/orders"
+    // -----------microservice----------------
+
+    // const api = "http://localhost:4002/test/order-index"
+
     const api = `http://localhost:8002/test/order-index`
 
     const handleGetOrders = async () => {

@@ -25,7 +25,7 @@ try {
 
 
 // create a new customer
-app.post('/create-customer', async (req, res) => {
+app.post('/test/customer-store', async (req, res) => {
 
   const { name, address, age, img } = req.body
 
@@ -42,14 +42,14 @@ app.post('/create-customer', async (req, res) => {
 
 // list of customers
 
-app.get('/customers', async (req, res) => {
+app.get('/test/customer-index', async (req, res) => {
 
   const customers = await CustomerModel.find()
   return res.send(customers)
 })
 
 
-app.get('/customer/:id', async (req, res) => {
+app.get('/test/customer-show/:id', async (req, res) => {
   const customer = await CustomerModel.findOne({ _id: req.params.id })
   return res.send(customer)
 })

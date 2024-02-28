@@ -6,7 +6,10 @@ export default function Books() {
 
     const [books, setBooks] = useState([]);
 
-    // const api = 'http://localhost:4000/books'
+    // -----------microservice----------------
+
+    // const api = 'http://localhost:4000/test/book-index'
+
     const api = 'http://localhost:8002/test/book-index'
 
     const handleGetBooks = async () => {

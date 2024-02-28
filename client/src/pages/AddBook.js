@@ -10,7 +10,11 @@ export default function AddBook() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const api = "http://localhost:4000/create-book"
+
+        // -----------microservice----------------
+
+        // const api = "http://localhost:4000/test/book-store"
+
         const api = `http://localhost:8002/test/book-store`
 
 

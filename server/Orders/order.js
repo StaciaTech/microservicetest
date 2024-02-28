@@ -23,7 +23,7 @@ try {
 
 
 // create a new order
-app.post('/create-order', async (req, res) => {
+app.post('/test/order-store', async (req, res) => {
 
     const { bookId, customerId, initialDate, deliveryDate } = req.body
 
@@ -40,14 +40,14 @@ app.post('/create-order', async (req, res) => {
 
 // list of orders
 
-app.get('/orders', async (req, res) => {
+app.get('/test/order-index', async (req, res) => {
 
     const orders = await OrderModel.find()
     return res.send(orders)
 })
 
 
-app.get("/order/:id", async (req, res) => {
+app.get("/test/order-show/:id", async (req, res) => {
 
     let order = await OrderModel.findOne({ _id: req.params.id })
 
@@ -55,14 +55,14 @@ app.get("/order/:id", async (req, res) => {
 
     let customerData
 
-    await axios.get(`http://localhost:4001/customer/${order.customerId}`).then((cust) => {
+    await axios.get(`http://localhost:4001/test/customer-show/:id/${order.customerId}`).then((cust) => {
         // console.log("res", cust.data)
         customerData = cust.data
     }).catch((err) => console.log(err))
 
 
     let bookData
-    await axios.get(`http://localhost:4000/book/${order.bookId}`).then((book) => {
+    await axios.get(`http://localhost:4000/test/book-show/:id/${order.bookId}`).then((book) => {
         // console.log("res", book.data)
         bookData = book.data
 
