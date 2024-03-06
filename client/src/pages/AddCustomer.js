@@ -10,9 +10,9 @@ export default function AddCustomer() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let customerApi
+
         // -----------microservice----------------
-        // customerApi = "http://localhost:4001/test/customer-store"
+        let customerApi = "http://localhost:4001/test/customer-store"
 
         const api = "http://localhost:8002/test/customer-store"
 

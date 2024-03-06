@@ -12,10 +12,9 @@ export default function AddBook() {
         e.preventDefault();
 
         // -----------microservice----------------
-        let bookApi
-        bookApi = "http://localhost:4000/test/book-store"
+        let bookApi = "http://localhost:4000/test/book-store"
 
-        // const api = `http://localhost:8002/test/book-store`
+        const api = `http://localhost:8002/test/book-store`
 
         if (bookApi) {
             axios.post(bookApi, {

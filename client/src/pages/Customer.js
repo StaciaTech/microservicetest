@@ -7,10 +7,10 @@ export default function Book() {
     const { id } = useParams();
     const handleGetCustomer = async () => {
 
-        let customerApi
+
         // -----------microservice----------------
 
-        // customerApi = `http://localhost:4001/test/customer-show/${id}`
+        let customerApi = `http://localhost:4001/test/customer-show/${id}`
 
         const api = `http://localhost:8002/test/customer-show/${id}`
 

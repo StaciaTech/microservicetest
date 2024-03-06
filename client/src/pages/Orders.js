@@ -7,10 +7,9 @@ export default function Orders() {
     const [orders, setOrders] = useState([]);
 
     // -----------microservice----------------
+    let orderApi = "http://localhost:4002/test/order-index"
 
-    const orderApi = "http://localhost:4002/test/order-index"
-
-    // const api = `http://localhost:8002/test/order-index`
+    let api = `http://localhost:8002/test/order-index`
 
     const handleGetOrders = async () => {
         if (orderApi) {
@@ -45,8 +44,8 @@ export default function Orders() {
                                 width: '10rem',
                                 height: '10rem',
                                 objectFit: 'cover'
-                            }} src={data.bookData.img} />
-                            <div><strong>Book Name: </strong>{data.bookData.title}</div>
+                            }} src={data.bookData?.img} />
+                            <div><strong>Book Name: </strong>{data.bookData?.title}</div>
                         </div>
                     ))
                 }

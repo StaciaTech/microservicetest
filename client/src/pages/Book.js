@@ -9,11 +9,11 @@ export default function Book() {
 
     // -----------microservice----------------
 
-    // const bookApi = `http://localhost:4000/test/book-show/${id}`
-    // const orderApi = `http://localhost:4000/test/order-store`
+    let bookApi = `http://localhost:4000/test/book-show/${id}`
+    let orderApi = `http://localhost:4002/test/order-store`
 
-    const bookApi = `http://localhost:8002/test/book-show/${id}`
-    const orderApi = `http://localhost:8002/test/order-store`
+    let bookApi2 = `http://localhost:8002/test/book-show/${id}`
+    let orderApi2 = `http://localhost:8002/test/order-store`
 
     const handleOrderBook = async (bookId) => {
         if (bookApi) {
@@ -21,7 +21,7 @@ export default function Book() {
                 bookId: bookId
             }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
         } else {
-            await axios.post(orderApi, {
+            await axios.post(orderApi2, {
                 bookId: bookId
             }).then((res) => console.log("your order is placed!")).catch((err) => console.log(err));
         }
@@ -29,9 +29,15 @@ export default function Book() {
 
 
     const handleGetBooks = () => {
-        axios.get(bookApi).then((res) => {
-            setBook(res.data)
-        }).catch((err) => console.log(err))
+        if (bookApi) {
+            axios.get(bookApi).then((res) => {
+                setBook(res.data)
+            }).catch((err) => console.log(err))
+        } else {
+            axios.get(orderApi2).then((res) => {
+                setBook(res.data)
+            }).catch((err) => console.log(err))
+        }
     };
 
     useEffect(() => {

@@ -8,10 +8,9 @@ export default function Customers() {
 
     // -----------microservice----------------
 
-    let customerApi
-    customerApi = "http://localhost:4001/test/customer-index"
+    let customerApi = "http://localhost:4001/test/customer-index"
 
-    // const api = `http://localhost:8002/test/customer-index`
+    const api = `http://localhost:8002/test/customer-index`
 
 
     const handleGetCustomers = async () => {

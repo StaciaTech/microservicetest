@@ -55,14 +55,14 @@ app.get("/test/order-show/:id", async (req, res) => {
 
     let customerData
 
-    await axios.get(`http://localhost:4001/test/customer-show/:id/${order.customerId}`).then((cust) => {
+    await axios.get(`http://localhost:4001/test/customer-show/${order.customerId}`).then((cust) => {
         // console.log("res", cust.data)
         customerData = cust.data
     }).catch((err) => console.log(err))
 
 
     let bookData
-    await axios.get(`http://localhost:4000/test/book-show/:id/${order.bookId}`).then((book) => {
+    await axios.get(`http://localhost:4000/test/book-show/${order.bookId}`).then((book) => {
         // console.log("res", book.data)
         bookData = book.data
 
